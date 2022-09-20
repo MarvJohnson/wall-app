@@ -1,15 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
-class User(models.Model):
-  email = models.EmailField(max_length=1000)
-  username = models.CharField(max_length=300)
-  password = models.CharField(max_length=2000)
-
 class Message(models.Model):
-  user = models.OneToOneField(User)
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
   content = models.CharField(max_length=1000)
-
-class Feed(models.Model):
-  messages = models.ForeignKey(Message)
