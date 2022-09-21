@@ -57,8 +57,8 @@ def register_new_user(request):
   user_exists = User.objects.filter(email=user_email).exists()
 
   if not user_exists:
-    new_user = User.objects.create(email=user_email, username=user_username, password=user_password)
-    new_user.save()
+    User.objects.create_user(email=user_email, username=user_username, password=user_password)
+
     return HttpResponse(status=201)
   else:
     return HttpResponseBadRequest(content="You cannot register an account with this email!", status=409)
