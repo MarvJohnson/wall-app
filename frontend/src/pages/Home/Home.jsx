@@ -1,12 +1,20 @@
-import { useEffect } from 'react';
 import './styling.css';
-import Client from '../../configs/axios';
+import Nav from '../../components/Nav/Nav';
+import Footer from '../../components/Footer/Footer';
+import MessageContainer from '../../components/MessageContainer/MessageContainer';
+import MessageInput from '../../components/MessageInput/MessageInput';
 
 export default function Home() {
-  // Todo: THIS useEffect JUST FOR THE INITIAL COMMIT -- REPLACE WITH SOMETHING MEANINGFUL
-  useEffect(() => {
-    Client.get('/').then((data) => console.log(data));
-  }, []);
-
-  return <div></div>;
+  return (
+    <div className="home-page">
+      <Nav />
+      <main className="flex-center">
+        <div>
+          <MessageContainer />
+          <MessageInput />
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
 }

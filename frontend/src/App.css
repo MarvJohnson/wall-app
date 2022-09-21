@@ -1,38 +1,157 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+:root {
+  /* spacing for a range of attributes (e.g. margin, padding, flex-gap, etc) */
+  --spacing-small: 0.5rem;
+  --spacing-medium: 0.7rem;
+  --spacing-large: 1rem;
+  --spacing-xl: 1.2rem;
+  --spacing-xxl: 1.4rem;
+
+  /* border radius values */
+  --rounding-small: 3px;
+  --rounding-medium: 5px;
+  --rounding-large: 7px;
+
+  /* font sizes for headings */
+  --heading-small: 0.7rem;
+  --heading-medium: 1rem;
+  --heading-large: 1.3rem;
+
+  /* font sizes for text */
+  --text-small: 0.3rem;
+  --text-medium: 0.5rem;
+  --text-large: 0.7rem;
+
+  /* font weight values for text */
+  --text-weight-lighter: 100;
+  --text-weight-regular: 400;
+  --text-weight-bold: 500;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+[data-theme="light"] {
+  --text1-color: #333;
+  --text2-color: #eee;
+  --text3-color: #fff;
+  --surface1-color: #ddd;
+  --surface2-color: #aaa;
+  --surface3-color: #666;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.text1, .text2, .header1, .header2 {
+  font-family: "Roboto", "Helvetica", "Trebuchet MS", "Arial";
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.text1, .surface1, .surface1::placeholder {
+  color: var(--text1-color);
+}
+
+.text2, .surface2, .surface2::placeholder {
+  color: var(--text2-color);
+}
+
+.text3, .surface3, .surface3::placeholder {
+  color: var(--text3-color);
+}
+
+.text-small {
+  font-weight: var(--text-weight-lighter);
+  font-size: var(--text-small);
+}
+
+.text-medium {
+  font-weight: var(--text-weight-regular);
+  font-size: var(--text-medium);
+}
+
+.text-large {
+  font-weight: var(--text-weight-bold);
+  font-size: var(--text-large);
+}
+
+.surface1 {
+  background-color: var(--surface1-color);
+}
+
+.surface2 {
+  background-color: var(--surface2-color);
+}
+
+.surface3 {
+  background-color: var(--surface3-color);
+}
+
+.flex-center {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.flex-center-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.rounded-small {
+  border-radius: var(--rounding-small);
+}
+
+.rounding-medium {
+  border-radius: var(--rounding-medium);
+}
+
+.rounding-large {
+  border-radius: var(--rounding-large);
+}
+
+.padded-small {
+  padding: var(--spacing-small);
+}
+
+.padded-medium {
+  padding: var(--spacing-medium);
+}
+
+.padded-large {
+  padding: var(--spacing-large);
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  width: 10px;  
+}
+
+button {
+  cursor: pointer;
+  transition: filter 0.2s ease-in-out;
+}
+
+.bright-hover:hover {
+  filter: brightness(1.1)
+}
+
+.dark-hover:hover {
+  filter: brightness(0.9);
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--surface2-color);
+  border-radius: 0 var(--rounding-medium) var(--rounding-medium) 0;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: var(--rounding-medium);
+  background-color: var(--surface3-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
