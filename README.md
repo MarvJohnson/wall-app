@@ -25,13 +25,18 @@ Wall App allows users to register a new account, login, and post messages to a g
 
 ## Setup
 
-1. [download the project](https://github.com/MarvJohnson/wall-app/releases/tag/v1.0.0)
-2. make sure you have python installed
-3. make sure you have a python virtual environment manager installed (something like pipenv)
+0. [download the project](https://github.com/MarvJohnson/wall-app/releases/tag/v1.0.0)
+1. make sure you have python installed
+2. make sure you have a python virtual environment manager installed (something like pipenv)
 
 ### Frontend
 
 The steps outlined below assume you're using `npm`, but most of the popular package managers should work.
+
+0. create a `.env` file in the `/frontend` directory and add the following:
+```
+REACT_APP_ENVIRONMENT=dev
+```
 1. `cd` into the `/frontend` folder
 2. run `npm install` to install the needed dependencies
 3. run `npm run start` to spin up the development server
@@ -40,6 +45,26 @@ The steps outlined below assume you're using `npm`, but most of the popular pack
 ### Backend
 
 The steps outlined below assume you're using `pipenv`, but any python virtual environment manager should work.
+
+0. create a `.env` file in the project's root directory, and add the following:
+```
+# A secret used by Django when generating hashes
+SECRET_KEY=REPLACE_THIS_WITH_A_SECRET_KEY
+EMAIL_HOST=REPLACE_THIS_WITH_AN_EMAIL_HOST
+EMAIL_HOST_USER=REPLACE_THIS_WITH_YOUR_EMAIL
+EMAIL_HOST_PASSWORD=REPLACE_THIS_WITH_YOUR_EMAIL_PASSWORD
+```
+Here is the list of email hosts you can choose based on which one your email belongs to (e.g. Foo@outlook.com would choose smtp-mail.outlook.com for the EMAIL_HOST):
+```
+AOL	aol.com	smtp.aol.com
+AT&T	att.net	smtp.mail.att.net
+Comcast	comcast.net	smtp.comcast.net
+iCloud	icloud.com/mail	smtp.mail.me.com
+Gmail	gmail.com	smtp.gmail.com
+Outlook	outlook.com	smtp-mail.outlook.com
+Yahoo	mail.yahoo.com	smtp.mail.yahoo.com
+```
+
 1. `cd` into the `/backend` folder
 2. enter the `pipenv` shell using `sudo pipenv shell`
 3. install the project's backend dependencies using `pipenv install`
