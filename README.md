@@ -25,7 +25,7 @@ Wall App allows users to register a new account, login, and post messages to a g
 
 ## Setup
 
-1. download the project
+1. [download the project](https://github.com/MarvJohnson/wall-app/releases/tag/v1.0.0)
 2. make sure you have python installed
 3. make sure you have a python virtual environment manager installed (something like pipenv)
 
