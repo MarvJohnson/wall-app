@@ -43,7 +43,8 @@ The steps outlined below assume you're using `pipenv`, but any python virtual en
 1. `cd` into the /backend folder
 2. enter the `pipenv` shell using `sudo pipenv shell`
 3. install the project's backend dependencies using `pipenv install`
-4. you can start the server by running the `python manage.py runserver` command
+4. run `python manage.py migrate`
+5. you can start the server by running the `python manage.py runserver` command
 
 The view tests can be run by using `python manage.py test`.
 
