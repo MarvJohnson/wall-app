@@ -6,8 +6,8 @@ import Client from '../configs/axios';
  */
 export async function getAllMessages() {
   try {
-    const response = await Client.get('messages/');
-    const fetchedMessages = JSON.parse(response.data);
+    const response = await Client.get('messages');
+    const fetchedMessages = response.data;
 
     return fetchedMessages;
   } catch (err) {
@@ -23,9 +23,10 @@ export async function getAllMessages() {
  */
 export async function sendMessage(message) {
   try {
-    const response = await Client.post('messages/new/', {
+    const payload = JSON.stringify({
       messageContent: message
     });
+    const response = await Client.post('messages/new', payload);
     const newlyCreatedMessage = response.data;
 
     return newlyCreatedMessage;
@@ -44,11 +45,12 @@ export async function sendMessage(message) {
  */
 export async function loginUser(username, password) {
   try {
-    const response = await Client.post('auth/login_user/', {
+    const payload = JSON.stringify({
       username,
       password
     });
-    const user = JSON.parse(response.data);
+    const response = await Client.post('auth/login_user', payload);
+    const user = response.data;
 
     return user;
   } catch (err) {
@@ -63,7 +65,7 @@ export async function loginUser(username, password) {
  * that are rendered based on user authentication.
  */
 export async function logoutUser() {
-  await Client.post('auth/logout_user/');
+  await Client.post('auth/logout_user');
 }
 
 /**
@@ -75,11 +77,12 @@ export async function logoutUser() {
  */
 export async function registerUser(email, username, password) {
   try {
-    const response = await Client.post('auth/register_user/', {
+    const payload = JSON.stringify({
       email,
       username,
       password
     });
+    const response = await Client.post('auth/register_user', payload);
     const successfullyRegistered = response.status === 201;
 
     return successfullyRegistered;
@@ -88,4 +91,16 @@ export async function registerUser(email, username, password) {
 
     return false;
   }
+}
+
+/**
+ * Makes a call to the backend api to attempt to grab the current user's information, if they're logged in.
+ * @returns An object with the authenticated user's data or null if the active user isn't logged in.
+ */
+export async function getAuthenticatedUser() {
+  const response = await Client.get('get_authenticated_user');
+
+  const user = response.data;
+
+  return user;
 }

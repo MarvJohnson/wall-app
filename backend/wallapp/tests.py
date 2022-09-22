@@ -1,5 +1,5 @@
-from lib2to3.pgen2.token import EQUAL
 from django.test import TestCase
+from django.core import mail
 from django.contrib.auth.models import User
 from .models import Message
 from django.urls import reverse
@@ -15,7 +15,7 @@ class MessageTests(TestCase):
 
     # Arrange/Act
 
-    response = self.client.post(reverse("create_message"), { "messageContent": "abc1234" })
+    response = self.client.post(reverse("create_message"), { "messageContent": "abc1234" }, 'application/json')
     response_message = response.getvalue().decode("utf-8")
 
     # Assert
@@ -37,7 +37,7 @@ class MessageTests(TestCase):
     # Act
 
     self.client.force_login(user)
-    response = self.client.post(reverse("create_message"), { "messageContent": "abc1234" })
+    response = self.client.post(reverse("create_message"), { "messageContent": "abc1234" }, 'application/json')
     self.client.logout()
 
     # Assert
@@ -97,9 +97,9 @@ class MessageTests(TestCase):
     self.assertEqual(len(all_messages), 2)
 
 class UserAuthTests(TestCase):
-  def test_register_new_user(self):
+  def test_register_user(self):
     """
-    test_register_new_user() creates a new User entry and returns a 201 status code.
+    test_register_user() creates a new User entry and returns a 201 status code.
     """
 
     # Arrange
@@ -112,7 +112,7 @@ class UserAuthTests(TestCase):
 
     # Act
 
-    response = self.client.post(reverse("register_new_user"), user_login)
+    response = self.client.post(reverse("register_user"), user_login, 'application/json')
 
     # Assert
 
@@ -136,7 +136,7 @@ class UserAuthTests(TestCase):
 
       # Act
 
-      response = self.client.post(reverse("register_new_user"), user_login)
+      response = self.client.post(reverse("register_user"), user_login, 'application/json')
       response_message = response.getvalue().decode("utf-8")
 
       # Assert
@@ -160,7 +160,7 @@ class UserAuthTests(TestCase):
 
     # Act
 
-    response = self.client.post(reverse("login_user"), data=user_login)
+    response = self.client.post(reverse("login_user"), user_login, 'application/json')
 
     # Assert
 
@@ -189,3 +189,61 @@ class UserAuthTests(TestCase):
 
     self.assertEqual(response.status_code, 200)
 
+  def test_get_authenticated_user_for_logged_in_user_returns_username(self):
+    """
+    test_get_authenticated_user_for_logged_in_user_returns_username() checks if the client is an authenticated, and if so, returns their username.
+    """
+
+    # Arrange
+
+    user_login = {
+      "username": "testuser",
+      "password": "abc123"
+    }
+
+    user = User.objects.create_user(email="test@test.com", username=user_login["username"], password=user_login["password"])
+
+    # Act
+
+    self.client.force_login(user)
+    response = self.client.post(reverse("get_authenticated_user"))
+
+    # Assert
+
+    resUser = response.json()["username"]
+    self.assertEquals(resUser, "testuser")
+
+  def test_get_authenticated_user_for_logged_out_user_returns_empty(self):
+    """
+    test_get_authenticated_user_for_logged_out_user_returns_empty() checks if the client is an authenticated, and if not, returns nothing.
+    """
+
+    # Arrange/Act
+    response = self.client.post(reverse("get_authenticated_user"))
+
+    # Assert
+
+    self.assertRaises(ValueError, response.json)
+
+class EmailTests(TestCase):
+  def test_newly_registered_user_is_sent_welcome_email(self):
+    """
+    test_newly_registered_user_is_sent_welcome_email() ensures newly registered users are sent a welcome email.
+    """
+    
+    # Arrange
+
+    user_login = {
+      "email": "test@test.com",
+      "username": "testuser",
+      "password": "abc123"
+    }
+
+    # Act
+
+    self.client.post(reverse("register_user"), user_login, 'application/json')
+
+    # Assert
+
+    self.assertEqual(len(mail.outbox), 1)
+    self.assertEqual(mail.outbox[0].subject, 'Welcome to Wall App!')

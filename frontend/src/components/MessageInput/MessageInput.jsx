@@ -1,12 +1,17 @@
+import { useState } from 'react';
 import './styling.css';
 
-export default function MessageInput() {
-  /**
-   * Sends the contents of a user's message to the backend to be processed.
-   * @param {object} event - The event corrosponding to the submission of the message-input form.
-   */
+export default function MessageInput({ onSubmit }) {
+  const [newMessage, setNewMessage] = useState('');
+
+  function handleChange(event) {
+    setNewMessage(event.target.value);
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
+    onSubmit(newMessage);
+    setNewMessage('');
   }
 
   return (
@@ -18,6 +23,8 @@ export default function MessageInput() {
         className="surface2"
         type="text"
         placeholder="Enter message here..."
+        value={newMessage}
+        onChange={handleChange}
       />
       <button className="surface3 bright-hover" type="submit">
         send

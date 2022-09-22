@@ -1,0 +1,16 @@
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxl);
+  width: 300px;
+  box-shadow: var(--surface-shadow1);
+  box-sizing: border-box;
+}
+
+.auth-form a {
+  margin: 0 auto;
+}
+
+.auth-form [type="submit"] {
+  height: 1.8rem;
+}

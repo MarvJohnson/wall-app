@@ -13,3 +13,9 @@
 ::-webkit-scrollbar-track {
   border-bottom-right-radius: 0;
 }
+
+@media screen and (max-width: 850px) {
+  .message-container {
+    width: calc(100vw - var(--spacing-xxl));
+  }
+}

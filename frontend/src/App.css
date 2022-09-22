@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
-:root {
+:root, ::before, ::after {
   /* spacing for a range of attributes (e.g. margin, padding, flex-gap, etc) */
   --spacing-small: 0.5rem;
   --spacing-medium: 0.7rem;
@@ -12,6 +12,9 @@
   --rounding-small: 3px;
   --rounding-medium: 5px;
   --rounding-large: 7px;
+  --rounding-xl: 10px;
+  --rounding-xxl: 13px;
+  --rounding-xxxl: 16px;
 
   /* font sizes for headings */
   --heading-small: 0.7rem;
@@ -29,13 +32,18 @@
   --text-weight-bold: 500;
 }
 
-[data-theme="light"] {
+[data-theme="light"], [data-theme="light"] ::before, [data-theme="light"] ::after {
   --text1-color: #333;
   --text2-color: #eee;
   --text3-color: #fff;
   --surface1-color: #ddd;
   --surface2-color: #aaa;
   --surface3-color: #666;
+  --surface-shadow1: 0 0 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+.App {
+  overflow:hidden;
 }
 
 .text1, .text2, .header1, .header2 {
@@ -125,8 +133,8 @@
   padding: 0;
 }
 
-::-webkit-scrollbar {
-  width: 10px;  
+.no-border {
+  border: none;
 }
 
 button {
@@ -140,6 +148,29 @@ button {
 
 .dark-hover:hover {
   filter: brightness(0.9);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.vh-max {
+  height: 100vh;
+}
+
+.fail-color {
+  color: #f00;
+}
+
+.rounded-button {
+  width: 5rem;
+  height: 2rem;
+  border-radius: var(--rounding-xxxl);
+  border: 1px solid var(--surface3-color);
+}
+
+::-webkit-scrollbar {
+  width: 10px;  
 }
 
 ::-webkit-scrollbar-track {

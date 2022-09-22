@@ -1,0 +1,27 @@
+.lined-indicator {
+  position: relative;
+  isolation: isolate;
+  margin-top: var(--spacing-small);
+}
+
+.lined-indicator p {
+  width: min-content;
+  margin: 0 auto;
+  background-color: var(--surface1-color);
+  border: 1px solid var(--surface3-color);
+  padding: 0 var(--spacing-small);
+}
+
+.lined-indicator::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto 0;
+  width: 100%;
+  height: calc(var(--spacing-small) - 7px);
+  background-color: var(--surface3-color);
+  z-index: -1;
+  border-radius: var(--rounding-medium);
+}

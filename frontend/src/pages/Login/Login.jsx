@@ -1,10 +1,10 @@
 import './styling.css';
-import AuthForm from '../../components/AuthForm/AuthForm';
+import LoginUserForm from '../../components/LoginUserForm/LoginUserForm';
 
-export default function Login() {
+export default function Login({ handleLoginUser }) {
   return (
-    <main className="login-page flex-center">
-      <AuthForm />
+    <main className="login-page flex-center vh-max">
+      <LoginUserForm handleLoginUser={handleLoginUser} />
     </main>
   );
 }

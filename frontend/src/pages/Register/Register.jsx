@@ -1,10 +1,10 @@
 import './styling.css';
-import AuthForm from '../../components/AuthForm/AuthForm';
+import RegisterUserForm from '../../components/RegisterUserForm/RegisterUserForm';
 
-export default function Register() {
+export default function Register({ registerUser }) {
   return (
-    <main className="register-page flex-center">
-      <AuthForm />
+    <main className="register-page flex-center vh-max">
+      <RegisterUserForm registerUser={registerUser} />
     </main>
   );
 }
