@@ -32,7 +32,7 @@ Wall App allows users to register a new account, login, and post messages to a g
 ### Frontend
 
 The steps outlined below assume you're using `npm`, but most of the popular package managers should work.
-1. `cd` into the /frontend folder
+1. `cd` into the `/frontend` folder
 2. run `npm install` to install the needed dependencies
 3. run `npm run start` to spin up the development server
 4. open up a separate terminal for the backend setup
@@ -40,7 +40,7 @@ The steps outlined below assume you're using `npm`, but most of the popular pack
 ### Backend
 
 The steps outlined below assume you're using `pipenv`, but any python virtual environment manager should work.
-1. `cd` into the /backend folder
+1. `cd` into the `/backend` folder
 2. enter the `pipenv` shell using `sudo pipenv shell`
 3. install the project's backend dependencies using `pipenv install`
 4. run `python manage.py migrate`
@@ -48,7 +48,7 @@ The steps outlined below assume you're using `pipenv`, but any python virtual en
 
 The view tests can be run by using `python manage.py test`.
 
-For emails to be sent, you'll need to have an additional terminal instance open (besides the one for running the Django server). In that terminal, run `python -m smtpd -n -c DebuggingServer localhost:25`, ensuring you're still in the /backend directory.
+For emails to be sent, you'll need to have an additional terminal instance open (besides the one for running the Django server). In that terminal, run `python -m smtpd -n -c DebuggingServer localhost:25`, ensuring you're still in the `/backend` directory.
 
 ## Organization
 
